@@ -1,4 +1,4 @@
-# 🌊 Neutral Buoyancy Lab — Pool Edition
+# 🌊 Neutral Buoyancy Lab
 *A Nova Clusters interactive physics experience.*
 
 ---
