@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NBL Buoyancy</title>
+
+  <!-- Website icon / favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="apple-touch-icon" href="images/logo.png" />
+
+  <!-- Meta data -->
+  <meta name="description" content="Neutral Buoyancy — A Nova Clusters educational project demonstrating astronaut training physics in a virtual pool environment." />
+  <meta name="theme-color" content="#061018" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sim-container pool-theme" role="application" aria-label="Neutral Buoyancy Lab — A Nova Clusters Project">
+    <!-- Simulation canvas -->
+    <canvas id="pool"></canvas>
+
+    <!-- Fixed team logo (top-right) -->
+    <img src="images/logo.png" alt="Team Logo" class="team-logo" />
+
+    <!-- HUD -->
+    <div class="hud" id="hudPanel">
+      <!-- Minimize/Maximize toggle -->
+      <div class="hud-toggle" id="hudToggle">
+        ⚙️ Controls <span id="toggleIcon">▾</span>
+      </div>
+
+      <div class="hud-content" id="hudContent">
+        <h2>Neutral Buoyancy — A Nova Clusters Project</h2>
+        <p class="subtitle">Tune environment &amp; suit variables to reach neutral buoyancy.</p>
+
+        <!-- Controls Grid -->
+        <div class="controls">
+          <!-- Environment -->
+          <fieldset>
+            <legend>Environment</legend>
+
+            <label>
+              Water Temperature
+              <input id="temp" type="range" min="0" max="40" value="20" step="0.1" />
+              <span id="tempVal">20.0 °C</span>
+            </label>
+
+            <label>
+              Salinity
+              <input id="salinity" type="range" min="0" max="40" value="0" step="0.1" />
+              <span id="salinityVal">0.0 ‰</span>
+            </label>
+
+            <div class="readonly">
+              <span>Water Density</span>
+              <strong id="rhoFluidVal">~ 998 kg/m³</strong>
+            </div>
+
+            <label>
+              Gravity
+              <input id="gravity" type="range" min="0" max="20" value="9.81" step="0.01" />
+              <span id="gravityVal">9.81 m/s²</span>
+            </label>
+
+            <label>
+              Drag (Viscosity)
+              <input id="drag" type="range" min="0" max="2" value="0.25" step="0.01" />
+              <span id="dragVal">0.25</span>
+            </label>
+
+            <label>
+              Lighting Intensity
+              <input id="light" type="range" min="0" max="1" value="0.5" step="0.01" />
+              <span id="lightVal">0.50</span>
+            </label>
+
+            <label>
+              Camera Sway
+              <input id="sway" type="range" min="0" max="1" value="0.2" step="0.01" />
+              <span id="swayVal">0.20</span>
+            </label>
+          </fieldset>
+
+          <!-- Astronaut -->
+          <fieldset>
+            <legend>Astronaut</legend>
+
+            <label>
+              Suit Inflation (Volume)
+              <input id="inflation" type="range" min="0.5" max="1.5" value="1.0" step="0.01" />
+              <span id="inflationVal">1.00×</span>
+            </label>
+
+            <label>
+              Astronaut Density
+              <input id="rhoObj" type="range" min="200" max="1300" value="800" step="1" />
+              <span id="rhoObjVal">800 kg/m³</span>
+            </label>
+
+            <label>
+              Tilt Sensitivity
+              <input id="tilt" type="range" min="0" max="1" value="0.35" step="0.01" />
+              <span id="tiltVal">0.35</span>
+            </label>
+
+            <label>
+              Suit Leak Factor
+              <input id="leak" type="range" min="0" max="0.01" value="0" step="0.0001" />
+              <span id="leakVal">0.0000 /s</span>
+            </label>
+
+            <label class="checkbox">
+              <input id="neutralLine" type="checkbox" checked />
+              <span>Show Neutral Zone Indicator</span>
+            </label>
+          </fieldset>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+          <button id="neutral">Set Neutral</button>
+          <button id="center">Center Astronaut</button>
+          <button id="pause">Pause</button>
+          <button id="reset">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        <strong>Neutral Buoyancy:</strong> When the weight of displaced water equals the astronaut’s weight,
+        net force ≈ 0 and motion stabilizes — the principle used in NASA’s NBL to mimic microgravity.<br />
+        Made with ♡ by the Nova Clusters team.
+      </p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
